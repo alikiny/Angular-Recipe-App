@@ -1,0 +1,13 @@
+<div  class="single-recipe d-flex flex-row m-3" 
+[routerLink]="[recipeIndex]" routerLinkActive="active"
+>
+    <img class="img-fluid" src="{{recipe.image}}" width="80px">
+    <div class="ml-2">
+      <p class="list-header">{{recipe.name}}</p>
+      <p>Level: {{recipe.level}}
+        <br/>
+        Time: {{recipe.time}} mins
+      </p>
+      
+    </div>      
+</div>

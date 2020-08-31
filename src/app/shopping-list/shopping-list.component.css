@@ -1,0 +1,9 @@
+.list-item{
+    border-bottom: 1px solid goldenrod;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+.custom-button{
+    cursor: pointer;
+}

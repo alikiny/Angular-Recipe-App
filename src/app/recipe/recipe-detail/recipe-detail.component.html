@@ -1,0 +1,39 @@
+<div class="d-flex flex-row m-3">
+    <div class="img-fluid" src=""></div>
+    <h2>{{recipe.name}}</h2>
+
+</div>
+
+<div class="m-3">
+    <img src={{recipe.image}} class="img-responsive" width="200px">
+    <div>Ingredients
+        <ul>
+            <li class="col-md-6 mt-2 border-bottom" *ngFor="let ingredient of recipe.ingredients">
+                <div class="row">
+                    <span class="col-9">
+                        {{ingredient.name}}
+                    </span>
+                    <span class="col-3">
+                        {{ingredient.amount}} {{ingredient.unit}}
+                    </span>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div>How to make
+        <p>{{recipe.process}}</p>
+    </div>
+
+    <div class="option-list">
+        <button (click)="openDropdown()" type="button" class="btn btn-primary dropdown-toggle">
+            Manage Recipe <span class="caret"></span>
+        </button>
+        <ul id="dropdown-menu" style="display: none;">
+            <li><a (click)="addToList()">To Shopping List</a></li>
+            <li><a (click)="onEdit()">Edit Recipe</a></li>
+            <li><a (click)="confirm()">Delete Recipe</a></li>
+        </ul>
+    </div>
+
+</div>

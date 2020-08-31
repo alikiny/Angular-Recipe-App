@@ -1,0 +1,29 @@
+.single-recipe{
+    background-color: rgba(207,212,93,0.28);
+
+}
+
+.single-recipe:hover{
+    background-color: rgba(214, 224, 8, 1);
+    cursor: pointer;
+}
+
+.active{
+    background-color:  rgba(214, 224, 8, 1);
+    border: 1px solid black;
+}
+
+.list-header{
+    font-size: 20px;
+    font-weight: 700;
+}
+
+ul li span{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+ul,li{
+    background-color: rgba(207,212,93,0);
+}

@@ -1,0 +1,11 @@
+
+  
+  <button class="plain-btn m-3" (click)="addNew()" >
+    <img src='assets/images/plus.ico' width="20px">
+    New Recipe
+  </button>
+
+
+
+<app-recipe-item *ngFor="let recipe of recipes,index as i"
+[recipe]="recipe" [recipeIndex]="i"></app-recipe-item>

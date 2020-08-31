@@ -1,0 +1,36 @@
+<!-- This form will use the template driven form -->
+
+<form (ngSubmit)="addIngredient(form)" #form="ngForm">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-sm-6 form-group">
+                <input class="form-control" name="name" placeholder="Ingredient" required ngModel>
+            </div>
+            <div class="col-sm-3 form-group">
+                <input class="form-control" name="amount" placeholder="Amount" required type="number" pattern="^[0-9]\.[0-9]*$|^[1-9]+\.?[0-9]*$" ngModel>
+            </div>
+            <div class="col-sm-3 form-group">
+                <select class="form-control" name="unit" placeholder="Unit" required ngModel>
+                    <option>g</option>
+                    <option>kg</option>
+                    <option>oz</option>
+                    <option>lbs</option>
+                    <option>cup</option>
+                  </select>
+            </div>
+
+        </div>
+
+        <div class="row justify-content-md-center">
+
+            <button type="submit" class="btn btn-success m-1" [disabled]="!form.valid">
+                {{dynamicButton}}
+            </button>
+            <button *ngIf="editMode" class="btn btn-warning  m-1" type="button" (click)="onCancel()">Cancel</button>
+            <button type="button" class="btn btn-info  m-1" (click)="clearList()">Clear</button>
+
+        </div>
+    </div>
+
+
+</form>

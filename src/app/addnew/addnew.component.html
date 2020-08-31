@@ -1,0 +1,117 @@
+<h2>Recipe: {{addForm.value.recipeName}} </h2>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <img *ngIf="addForm.value.recipeImage;else defaultImage" [src]="addForm.value.recipeImage" width="200">
+            <ng-template #defaultImage>
+                <img src='../../assets/images/d-image.png' width="200">
+            </ng-template>
+
+        </div>
+        <div class="col-md-10">
+            <form class="container" [formGroup]="addForm" (ngSubmit)="onSave()">
+
+                <!-- the first row -->
+                <div class="row">
+                    <div class="col-sm-4 form-group">
+                        <input class="form-control" placeholder="Recipe name" formControlName='recipeName'
+                            [(ngModel)]="addForm.value.recipeName">
+                    </div>
+
+                    <div class="col-sm-4 form-group">
+                        <input class="form-control" placeholder="Recipe description"
+                            formControlName='recipeDescription'>
+                    </div>
+
+                    <div class="col-sm-4 form-group">
+                        <input class="form-control" placeholder="Recipe image" formControlName='recipeImage'>
+                    </div>
+
+                </div>
+
+                <!-- Second row, devided into two parts: rest of recipe form and ingredient form-->
+
+                <div class="row">
+
+                    <!-- Rest of recipe form, display inside 1 column, as two separate rows -->
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <input class="form-control" placeholder="Level" formControlName='recipeLevel'>
+                            </div>
+
+                            <div class="col-md-6 form-group">
+                                <input class="form-control" type="number" placeholder="Recipe time"
+                                    formControlName='recipeTime'>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Process" rows="6"
+                                formControlName='recipeProcess' required></textarea>
+                        </div>
+
+                    </div>
+
+                    <!-- The ingredient list and ingredient form -->
+                    <div class="col-md-4 form-group" formArrayName="ingredientControl">
+
+                        <!-- Ingredient list -->
+
+                        <div class="form-row" *ngFor="let ctr of getIngredientCtr();let i=index" [formGroupName]="i">
+                            <div class="form-group col-md-5">
+                                <input class="form-control" placeholder="Ingredient" formControlName='ingredientName'>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <input class="form-control" placeholder="0" type="number"
+                                    formControlName='ingredientAmount'>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <select class="form-control" placeholder="Unit"
+                                    formControlName="ingredientUnit">
+                                    <option>g</option>
+                                    <option>kg</option>
+                                    <option>oz</option>
+                                    <option>lbs</option>
+                                    <option>cup</option>
+                                </select>
+                                <!-- <input class="form-control" placeholder="unit" formControlName='ingredientUnit'> -->
+                            </div>
+                            <div class="form-group col-md-1 ">
+                                <button class="btn *-btn-outline" type="button" (click)="onDelete(i)">
+                                    X
+                                </button>
+                            </div>
+
+                        </div>
+
+                        <!-- ingredient form -->
+                        <div class="form-group d-flex justify-content-between">
+                            <button class="btn btn-info" type="button" (click)='onChange()' [disabled]='canAddNew'>Add
+                                new ingredient</button>
+                            <button class="btn btn-info" type="button" (click)='onAddIngredient()'
+                                [disabled]="ingredientControl.invalid">Update</button>
+                        </div>
+
+                        <div style="display: none" id="ingredient-form">
+
+                            <button class="btn btn-outline-success" type="button" [disabled]='ingredientControl.invalid'
+                                (click)="onAddIngredient()">Save</button>
+                            <button class="btn btn-outline-danger" type="button"
+                                (click)="onCancelIngredient()">Cancel</button>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-success mr-3" type="submit" [disabled]="this.addForm.invalid">Save
+                        change</button>
+                    <button class="btn btn-danger" type="button" (click)="cancel()">Cancel</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
